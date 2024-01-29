@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://chkivl73hp05b"]
+
+[ext_resource type="Texture2D" uid="uid://ppoomjrup1sr" path="res://Textures/Square.png" id="1_2k80m"]
+[ext_resource type="Texture2D" uid="uid://qnjvll0uwxut" path="res://Textures/SquareCrossed.png" id="2_dwmjd"]
+
+[node name="BingoSpace" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("1_2k80m")
+texture_pressed = ExtResource("2_dwmjd")
+texture_hover = ExtResource("2_dwmjd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+autowrap_mode = 2

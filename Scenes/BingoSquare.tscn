@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr71y7cht0g0"]
+
+[ext_resource type="Script" path="res://Scripts/BingoSquare.gd" id="1_p6pvo"]
+[ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="2_wdryr"]
+
+[node name="BingoSquare" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_p6pvo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(124, 124)
+layout_mode = 2
+color = Color(1, 1, 1, 0.701961)
+script = ExtResource("2_wdryr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="ColorRect" to="ColorRect" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect" to="ColorRect" method="_on_mouse_exited"]
