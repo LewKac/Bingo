@@ -23,7 +23,7 @@ func _on_mouse_entered():
 	mouse_inside = 1
 
 
-
-
 func _on_mouse_exited():
 	mouse_inside = 0
+
+

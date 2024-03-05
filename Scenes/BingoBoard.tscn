@@ -19,3 +19,8 @@ bingo_square = ExtResource("2_slom0")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+horizontal_alignment = 2

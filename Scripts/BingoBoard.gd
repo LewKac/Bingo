@@ -3,6 +3,8 @@ extends MarginContainer
 @onready var global_text = get_node("/root/Globals") 
 @onready var texts = global_text.bingo_text.duplicate()
 @onready var Vbox = get_node("VBoxContainer")
+@onready var start_time = Time.get_unix_time_from_system()
+
 
 @export var bingo_square : PackedScene  
 @export var bingo_height = 5
@@ -16,6 +18,8 @@ var available_spaces = max_spaces
 func _ready():
 	fill_spaces()
 
+func _process(_delta):
+	timer()
 
 func enough_spaces() -> bool:
 	if available_spaces > 0:
@@ -52,6 +56,7 @@ func fill_spaces():
 				square.set_text(texts[chosen_text])
 				texts.remove_at(chosen_text)
 			
+			#square.connect()
 			hbox.add_child(square)
 			available_spaces -= 1
 		
@@ -72,4 +77,13 @@ func _button_pressed():
 		Vbox.remove_child(n)
 		n.queue_free()
 	fill_spaces()
+	timer_reset()
 
+func timer():
+	var label_text = "Duration of bingo: %f \nTime since last yellow: %f"
+	var duration = Time.get_unix_time_from_system() - start_time
+	$Label.text = label_text % [duration, duration]
+	
+
+func timer_reset():
+	start_time = Time.get_unix_time_from_system()

@@ -1,5 +1,9 @@
 extends MarginContainer
 
+var start_time = Time.get_unix_time_from_system()
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -8,3 +12,5 @@ func _ready():
 func set_text(bingo_text : String) -> void:
 	$MarginContainer/Label.text = bingo_text
 	return
+
+
