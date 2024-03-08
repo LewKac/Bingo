@@ -1,6 +1,6 @@
 extends ColorRect
 
-@export_enum("Unpressed", "Pressed") var current_state = "Unpressed"
+@export_enum("Unpressed", "Pressed", "Row") var current_state = "Unpressed"
 signal mouse_pressed(new_color : Color, new_state : bool) # Used to change color
 signal tile_change(pressed : bool) # Used to send signal to game board
 
@@ -23,6 +23,11 @@ func _process(_delta):
 		elif Input.is_action_just_pressed("LMB") and current_state == "Pressed":
 			mouse_pressed.emit(COLOR_UNCKECKED, false)
 			tile_change.emit(false)
+		elif Input.is_action_just_pressed("LMB") and current_state == "Row":
+			mouse_pressed.emit(COLOR_UNCKECKED, false)
+			tile_change.emit(false)
+
+			
 
 
 
@@ -33,7 +38,7 @@ func _on_mouse_exited():
 	mouse_inside = false
 
 func change_color(new_color : Color, new_state : bool):
-	#self.color = new_color
+	self.color = new_color
 	if new_state == true:
 		current_state = "Pressed"
 	else:
@@ -42,11 +47,13 @@ func change_color(new_color : Color, new_state : bool):
 func change_color_red():
 	print("I triggered in red")
 	self.color = COLOR_ROW
+	current_state = "Row"
 
 func change_color_grey():
-	pass
 	if current_state == "Pressed":
 		self.color = COLOR_CHECKED
+	elif current_state == "Row":
+		self.color = COLOR_ROW
 	else:
 		self.color == COLOR_UNCKECKED
 

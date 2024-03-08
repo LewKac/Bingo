@@ -18,13 +18,14 @@ var actual_space_tracker
 func _ready():
 	fill_spaces()
 
+func _process(delta):
+	#get_tree().call_group("row_5", "change_color_red")
+	pass
 
 func enough_spaces() -> bool:
 	if available_spaces > 0:
 		return true
 	return false
-	
-
 
 # Fills the spaces with blocks.
 func fill_spaces():
@@ -101,8 +102,10 @@ func update_space_tracker():
 
 func check_if_row():
 	for i in range(bingo_height):
-		if actual_space_tracker[i].all(func(boolean): return boolean):
+		if (actual_space_tracker[i].all(func(boolean): return boolean)) == true:
 			update_colors_to_red(i, "row")
+		else:
+			update_colors_to_grey(i, "row")
 
 func check_if_collumn():
 	for i in range(bingo_height):
@@ -113,7 +116,7 @@ func check_if_collumn():
 		if complete_squares == 5:
 			update_colors_to_red(i, "collumn")
 		else:
-				update_colors_to_grey(i, "collumn")
+			update_colors_to_grey(i, "collumn")
 
 
 func add_to_correct_group(x : int, y : int, square):
@@ -144,14 +147,13 @@ func update_colors_to_red(number : int, row_or_collumn : String):
 	if row_or_collumn == "row":
 		if number == 0:
 			get_tree().call_group("row_1", "change_color_red")
-			print("I triggered!")
-		if number == 1:
+		elif number == 1:
 			get_tree().call_group("row_2", "change_color_red")
-		if number == 2:
+		elif number == 2:
 			get_tree().call_group("row_3", "change_color_red")
-		if number == 3:
+		elif number == 3:
 			get_tree().call_group("row_4", "change_color_red")
-		if number == 4:
+		elif number == 4:
 			get_tree().call_group("row_5", "change_color_red")
 	elif row_or_collumn == "collumn":
 		if number == 0:
@@ -169,22 +171,22 @@ func update_colors_to_grey(number : int, row_or_collumn : String):
 	if row_or_collumn == "row":
 		if number == 0:
 			get_tree().call_group("row_1", "change_color_grey")
-		if number == 1:
+		elif number == 1:
 			get_tree().call_group("row_2", "change_color_grey")
-		if number == 2:
+		elif number == 2:
 			get_tree().call_group("row_3", "change_color_grey")
-		if number == 3:
+		elif number == 3:
 			get_tree().call_group("row_4", "change_color_grey")
-		if number == 4:
+		elif number == 4:
 			get_tree().call_group("row_5", "change_color_grey")
 	elif row_or_collumn == "collumn":
 		if number == 0:
 			get_tree().call_group("collumn_1", "change_color_grey")
-		if number == 1:
+		elif number == 1:
 			get_tree().call_group("collumn_2", "change_color_grey")
-		if number == 2:
+		elif number == 2:
 			get_tree().call_group("collumn_3", "change_color_grey")
-		if number == 3:
+		elif number == 3:
 			get_tree().call_group("collumn_4", "change_color_grey")
-		if number == 4:
+		elif number == 4:
 			get_tree().call_group("collumn_5", "change_color_grey")
