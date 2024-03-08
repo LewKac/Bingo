@@ -4,7 +4,7 @@ extends ColorRect
 signal mouse_pressed(new_color : Color, new_state : bool) # Used to change color
 signal tile_change(pressed : bool) # Used to send signal to game board
 
-var mouse_inside : int # Used to check if mouse is inside the tile
+var mouse_inside : bool # Used to check if mouse is inside the tile
 
 const COLOR_CHECKED = Color(0.92, 1, 0.13, 0.7)
 const COLOR_UNCKECKED = Color(1, 1, 1, 0.7)
@@ -27,16 +27,26 @@ func _process(_delta):
 
 
 func _on_mouse_entered():
-	mouse_inside = 1
+	mouse_inside = true
 
 func _on_mouse_exited():
-	mouse_inside = 0
+	mouse_inside = false
 
 func change_color(new_color : Color, new_state : bool):
-	self.color = new_color
+	#self.color = new_color
 	if new_state == true:
 		current_state = "Pressed"
 	else:
 		current_state = "Unpressed"
+
+func change_color_red():
+	print("I triggered in red")
+	self.color = COLOR_ROW
+
+func change_color_grey():
 	pass
+	if current_state == "Pressed":
+		self.color = COLOR_CHECKED
+	else:
+		self.color == COLOR_UNCKECKED
 

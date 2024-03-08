@@ -30,6 +30,7 @@ func enough_spaces() -> bool:
 func fill_spaces():
 	available_spaces = max_spaces
 	texts = global_text.bingo_text.duplicate()
+	box_tracker = []
 	
 	for y in bingo_height:
 		var hbox = HBoxContainer.new()
@@ -62,6 +63,7 @@ func fill_spaces():
 			#Connect signal from each square to keep track of how many are pressed
 			square.colorRect.tile_change.connect(received_signal)
 			box_tracker[y].append(square)
+			add_to_correct_group(y, x, square)
 			available_spaces -= 1
 		
 		if not enough_spaces():
@@ -81,18 +83,108 @@ func _button_pressed():
 		Vbox.remove_child(n)
 		n.queue_free()
 	fill_spaces()
+	
 
 func received_signal(state):
 	update_space_tracker()
+	check_if_row()
+	check_if_collumn()
 	print(actual_space_tracker)
 	pass
 
 func update_space_tracker():
 	actual_space_tracker = []
-	for i in range(5):
-		for j in range(5):
-			actual_space_tracker.append(box_tracker[i][j].current_state)
+	for i in range(bingo_height):
+		actual_space_tracker.append([])
+		for j in range(bingo_lenght):
+			actual_space_tracker[i].append(box_tracker[i][j].current_state)
 
-func update_colors():
-	#if actual_space_tracker[]
-	pass
+func check_if_row():
+	for i in range(bingo_height):
+		if actual_space_tracker[i].all(func(boolean): return boolean):
+			update_colors_to_red(i, "row")
+
+func check_if_collumn():
+	for i in range(bingo_height):
+		var complete_squares = 0 
+		for j in range(bingo_lenght):
+			if actual_space_tracker[j][i] == true:
+				complete_squares += 1
+		if complete_squares == 5:
+			update_colors_to_red(i, "collumn")
+		else:
+				update_colors_to_grey(i, "collumn")
+
+
+func add_to_correct_group(x : int, y : int, square):
+	if x == 0:
+		square.colorRect.add_to_group("row_1")
+	if x == 1:
+		square.colorRect.add_to_group("row_2")
+	if x == 2:
+		square.colorRect.add_to_group("row_3")
+	if x == 3:
+		square.colorRect.add_to_group("row_4")
+	if x == 4:
+		square.colorRect.add_to_group("row_5")
+	
+	if y == 0:
+		square.colorRect.add_to_group("collumn_1")
+	if y == 1:
+		square.colorRect.add_to_group("collumn_2")
+	if y == 2:
+		square.colorRect.add_to_group("collumn_3")
+	if y == 3:
+		square.colorRect.add_to_group("collumn_4")
+	if y == 4:
+		square.colorRect.add_to_group("collumn_5")
+
+
+func update_colors_to_red(number : int, row_or_collumn : String):
+	if row_or_collumn == "row":
+		if number == 0:
+			get_tree().call_group("row_1", "change_color_red")
+			print("I triggered!")
+		if number == 1:
+			get_tree().call_group("row_2", "change_color_red")
+		if number == 2:
+			get_tree().call_group("row_3", "change_color_red")
+		if number == 3:
+			get_tree().call_group("row_4", "change_color_red")
+		if number == 4:
+			get_tree().call_group("row_5", "change_color_red")
+	elif row_or_collumn == "collumn":
+		if number == 0:
+			get_tree().call_group("collumn_1", "change_color_red")
+		elif number == 1:
+			get_tree().call_group("collumn_2", "change_color_red")
+		elif number == 2:
+			get_tree().call_group("collumn_3", "change_color_red")
+		elif number == 3:
+			get_tree().call_group("collumn_4", "change_color_red")
+		elif number == 4:
+			get_tree().call_group("collumn_5", "change_color_red")
+
+func update_colors_to_grey(number : int, row_or_collumn : String):
+	if row_or_collumn == "row":
+		if number == 0:
+			get_tree().call_group("row_1", "change_color_grey")
+		if number == 1:
+			get_tree().call_group("row_2", "change_color_grey")
+		if number == 2:
+			get_tree().call_group("row_3", "change_color_grey")
+		if number == 3:
+			get_tree().call_group("row_4", "change_color_grey")
+		if number == 4:
+			get_tree().call_group("row_5", "change_color_grey")
+	elif row_or_collumn == "collumn":
+		if number == 0:
+			get_tree().call_group("collumn_1", "change_color_grey")
+		if number == 1:
+			get_tree().call_group("collumn_2", "change_color_grey")
+		if number == 2:
+			get_tree().call_group("collumn_3", "change_color_grey")
+		if number == 3:
+			get_tree().call_group("collumn_4", "change_color_grey")
+		if number == 4:
+			get_tree().call_group("collumn_5", "change_color_grey")
