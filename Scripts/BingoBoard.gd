@@ -88,8 +88,8 @@ func _button_pressed():
 
 func received_signal(state):
 	update_space_tracker()
-	check_if_row()
 	check_if_collumn()
+	check_if_row()
 	print(actual_space_tracker)
 	pass
 
