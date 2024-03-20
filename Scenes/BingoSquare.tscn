@@ -12,7 +12,7 @@ script = ExtResource("1_p6pvo")
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(124, 124)
 layout_mode = 2
-color = Color(1, 1, 1, 0.701961)
+color = Color(1, 1, 1, 0.705882)
 script = ExtResource("2_wdryr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
