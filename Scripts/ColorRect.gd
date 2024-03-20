@@ -4,6 +4,7 @@ enum States {Unpressed, Pressed, Row}
 
 signal mouse_pressed(state : States) # Used to change color
 signal tile_change(pressed : bool) # Used to send signal to game board
+signal remove_row(grous : Array)
 signal update_Board()
 
 var current_state : States = States.Unpressed
@@ -25,6 +26,7 @@ func _process(_delta):
 			tile_change.emit(false)
 			mouse_pressed.emit(States.Unpressed)
 		elif Input.is_action_just_pressed("LMB") and current_state == States.Row:
+			remove_row.emit(get_groups())
 			tile_change.emit(false)
 			mouse_pressed.emit(States.Unpressed)
 
@@ -35,7 +37,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	mouse_inside = false
-
+ 
 
 func change_state(state : States):
 	if state == States.Unpressed:
@@ -44,6 +46,12 @@ func change_state(state : States):
 		current_state = States.Pressed
 	if state == States.Row:
 		current_state = States.Row
+	update_color() 
+
+
+func fix_row_to_pressed():
+	if current_state == States.Row:
+		current_state = States.Pressed
 	update_color() 
 
 

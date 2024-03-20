@@ -66,6 +66,7 @@ func fill_spaces():
 			
 			#Connect signal from each square to keep track of how many are pressed
 			square.colorRect.mouse_pressed.connect(received_signal)
+			square.colorRect.remove_row.connect(remove_row_from_square)
 			box_tracker[y].append(square)
 			add_to_correct_group(y, x, square)
 			available_spaces -= 1
@@ -81,6 +82,10 @@ func add_button():
 	button.pressed.connect(self._button_pressed)
 	return
 
+func remove_row_from_square(groups : Array):
+	for group in groups:
+		get_tree().call_group(group, "fix_row_to_pressed")
+
 
 func _button_pressed():
 	for n in Vbox.get_children():
@@ -91,7 +96,7 @@ func _button_pressed():
 
 func received_signal(state : States):
 	update_space_tracker()
-	#check_if_collumn()
+	check_if_collumn()
 	check_if_row()
 	pass
 
@@ -103,14 +108,10 @@ func update_space_tracker():
 			actual_space_tracker[i].append(box_tracker[i][j].current_state)
 
 
-
-
 func check_if_row():
 	for i in range(bingo_height):
 		if (actual_space_tracker[i].all(func(boolean): return boolean)) == true:
 			update_colors_to_red(i, "row")
-		else:
-			update_colors_to_grey(i, "row")
 
 func check_if_collumn():
 	for i in range(bingo_height):
@@ -120,8 +121,6 @@ func check_if_collumn():
 				complete_squares += 1
 		if complete_squares == 5:
 			update_colors_to_red(i, "collumn")
-		else:
-			update_colors_to_grey(i, "collumn")
 
 
 func add_to_correct_group(x : int, y : int, square):
@@ -150,48 +149,26 @@ func add_to_correct_group(x : int, y : int, square):
 
 func update_colors_to_red(number : int, row_or_collumn : String):
 	if row_or_collumn == "row":
-		if number == 0:
-			get_tree().call_group("row_1", "change_state", States.Row)
-		elif number == 1:
-			get_tree().call_group("row_2", "change_state", States.Row)
-		elif number == 2:
-			get_tree().call_group("row_3", "change_state", States.Row)
-		elif number == 3:
-			get_tree().call_group("row_4", "change_state", States.Row)
-		elif number == 4:
-			get_tree().call_group("row_5", "change_state", States.Row)
+		match number:
+			0:
+				get_tree().call_group("row_1", "change_state", States.Row, true)
+			1:
+				get_tree().call_group("row_2", "change_state", States.Row, true)
+			2:
+				get_tree().call_group("row_3", "change_state", States.Row, true)
+			3:
+				get_tree().call_group("row_4", "change_state", States.Row, true)
+			4:
+				get_tree().call_group("row_5", "change_state", States.Row, true)
 	elif row_or_collumn == "collumn":
-		if number == 0:
-			get_tree().call_group("collumn_1", "change_state", States.Row)
-		elif number == 1:
-			get_tree().call_group("collumn_2", "change_state", States.Row)
-		elif number == 2:
-			get_tree().call_group("collumn_3", "change_state", States.Row)
-		elif number == 3:
-			get_tree().call_group("collumn_4", "change_state", States.Row)
-		elif number == 4:
-			get_tree().call_group("collumn_5", "change_state", States.Row)
-
-func update_colors_to_grey(number : int, row_or_collumn : String):
-	if row_or_collumn == "row":
-		if number == 0:
-			get_tree().call_group("row_1", "change_color_grey")
-		elif number == 1:
-			get_tree().call_group("row_2", "change_color_grey")
-		elif number == 2:
-			get_tree().call_group("row_3", "change_color_grey")
-		elif number == 3:
-			get_tree().call_group("row_4", "change_color_grey")
-		elif number == 4:
-			get_tree().call_group("row_5", "change_color_grey")
-	elif row_or_collumn == "collumn":
-		if number == 0:
-			get_tree().call_group("collumn_1", "change_color_grey")
-		elif number == 1:
-			get_tree().call_group("collumn_2", "change_color_grey")
-		elif number == 2:
-			get_tree().call_group("collumn_3", "change_color_grey")
-		elif number == 3:
-			get_tree().call_group("collumn_4", "change_color_grey")
-		elif number == 4:
-			get_tree().call_group("collumn_5", "change_color_grey")
+		match number:
+			0:
+				get_tree().call_group("collumn_1", "change_state", States.Row, true)
+			1:
+				get_tree().call_group("collumn_2", "change_state", States.Row, true)
+			2:
+				get_tree().call_group("collumn_3", "change_state", States.Row, true)
+			3:
+				get_tree().call_group("collumn_4", "change_state", States.Row, true)
+			4:
+				get_tree().call_group("collumn_5", "change_state", States.Row, true)
