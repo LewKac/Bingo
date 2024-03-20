@@ -16,14 +16,14 @@ var available_spaces = max_spaces
 
 var box_tracker = []
 var actual_space_tracker
+var diagonal_1_squares = []
+var diagonal_2_squares = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fill_spaces()
 
-func _process(delta):
-	#get_tree().call_group("row_5", "change_color_red")
-	pass
 
 func enough_spaces() -> bool:
 	if available_spaces > 0:
@@ -98,7 +98,23 @@ func received_signal(state : States):
 	update_space_tracker()
 	check_if_collumn()
 	check_if_row()
+	check_if_diagonals()
 	pass
+
+
+func check_if_diagonals():
+	var diagonal_1_tracker = []
+	for i in diagonal_1_squares:
+		diagonal_1_tracker.append(i.current_state)
+	
+	var diagonal_2_tracker = []
+	for i in diagonal_2_squares:
+		diagonal_2_tracker.append(i.current_state)
+	
+	if (diagonal_1_tracker.all(func(boolean): return boolean)) == true:
+		get_tree().call_group("diagonal_1", "change_state", States.Row)
+	if (diagonal_2_tracker.all(func(boolean): return boolean)) == true:
+		get_tree().call_group("diagonal_2", "change_state", States.Row)
 
 func update_space_tracker():
 	actual_space_tracker = []
@@ -145,30 +161,68 @@ func add_to_correct_group(x : int, y : int, square):
 		square.colorRect.add_to_group("collumn_4")
 	if y == 4:
 		square.colorRect.add_to_group("collumn_5")
+	
+	find_diagonals(x, y, square)
+
+
+
+func find_diagonals(x : int, y : int, square):
+	if (x == 0 and y == 0):
+		square.colorRect.add_to_group("diagonal_1")
+		diagonal_1_squares.append(square)
+	if (x == 1 and y == 1):
+		square.colorRect.add_to_group("diagonal_1")
+		diagonal_1_squares.append(square)
+	if (x == 2 and y == 2):
+		square.colorRect.add_to_group("diagonal_1")
+		diagonal_1_squares.append(square)
+	if (x == 3 and y == 3):
+		square.colorRect.add_to_group("diagonal_1")
+		diagonal_1_squares.append(square)
+	if (x == 4 and y == 4):
+		square.colorRect.add_to_group("diagonal_1")
+		diagonal_1_squares.append(square)
+	
+	if (x == 4 and y == 0):
+		square.colorRect.add_to_group("diagonal_2")
+		diagonal_2_squares.append(square)
+	if (x == 3 and y == 1):
+		square.colorRect.add_to_group("diagonal_2")
+		diagonal_2_squares.append(square)
+	if (x == 2 and y == 2):
+		square.colorRect.add_to_group("diagonal_2")
+		diagonal_2_squares.append(square)
+	if (x == 1 and y == 3):
+		square.colorRect.add_to_group("diagonal_2")
+		diagonal_2_squares.append(square)
+	if (x == 0 and y == 4):
+		square.colorRect.add_to_group("diagonal_2")
+		diagonal_2_squares.append(square)
+
 
 
 func update_colors_to_red(number : int, row_or_collumn : String):
 	if row_or_collumn == "row":
 		match number:
 			0:
-				get_tree().call_group("row_1", "change_state", States.Row, true)
+				get_tree().call_group("row_1", "change_state", States.Row)
 			1:
-				get_tree().call_group("row_2", "change_state", States.Row, true)
+				get_tree().call_group("row_2", "change_state", States.Row)
 			2:
-				get_tree().call_group("row_3", "change_state", States.Row, true)
+				get_tree().call_group("row_3", "change_state", States.Row)
 			3:
-				get_tree().call_group("row_4", "change_state", States.Row, true)
+				get_tree().call_group("row_4", "change_state", States.Row)
 			4:
-				get_tree().call_group("row_5", "change_state", States.Row, true)
+				get_tree().call_group("row_5", "change_state", States.Row)
 	elif row_or_collumn == "collumn":
 		match number:
 			0:
-				get_tree().call_group("collumn_1", "change_state", States.Row, true)
+				get_tree().call_group("collumn_1", "change_state", States.Row)
 			1:
-				get_tree().call_group("collumn_2", "change_state", States.Row, true)
+				get_tree().call_group("collumn_2", "change_state", States.Row)
 			2:
-				get_tree().call_group("collumn_3", "change_state", States.Row, true)
+				get_tree().call_group("collumn_3", "change_state", States.Row)
 			3:
-				get_tree().call_group("collumn_4", "change_state", States.Row, true)
+				get_tree().call_group("collumn_4", "change_state", States.Row)
 			4:
-				get_tree().call_group("collumn_5", "change_state", States.Row, true)
+				get_tree().call_group("collumn_5", "change_state", States.Row)
