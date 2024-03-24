@@ -1,6 +1,10 @@
 extends Control
 
 @onready var TileText = $TileTexts
+@onready var CurrentPrompts = $CurrentPrompts
+
+func _process(delta):
+	CurrentPrompts.text = "Current amount of prompts: %d" % len(TileText.text.split("\n", false))
 
 func _ready():
 	if not Globals.custom_bingo_text.is_empty():

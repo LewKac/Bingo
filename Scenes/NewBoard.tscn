@@ -19,9 +19,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -279.0
-offset_top = -276.0
-offset_right = 280.0
+offset_left = -279.5
+offset_top = -322.0
+offset_right = 279.5
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -57,6 +57,15 @@ placeholder_text = "Enter tiles
 In format
 Like this"
 scroll_smooth = true
+highlight_current_line = true
+
+[node name="CurrentPrompts" type="Label" parent="."]
+layout_mode = 2
+offset_left = 80.0
+offset_top = 371.0
+offset_right = 318.0
+offset_bottom = 394.0
+text = "Current amount of prompts:"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

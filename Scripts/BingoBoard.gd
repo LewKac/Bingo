@@ -76,7 +76,16 @@ func fill_spaces():
 			square.colorRect.remove_row.connect(remove_row_from_square)
 			box_tracker[y].append(square)
 			add_to_correct_group(y, x, square)
+			
+			#Make it so free space is by default turned on
+			if available_spaces == 13:
+				square.colorRect.change_state(States.Pressed)
+				square.current_state = true
+			
 			available_spaces -= 1
+			
+		
+		
 		
 		if not enough_spaces():
 			add_button()
