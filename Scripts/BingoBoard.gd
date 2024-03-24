@@ -31,6 +31,7 @@ func enough_spaces() -> bool:
 
 # Fills the spaces with blocks.
 func fill_spaces():
+	#Resets all values
 	available_spaces = max_spaces
 	diagonal_1_squares = []
 	diagonal_2_squares = []
@@ -40,6 +41,7 @@ func fill_spaces():
 		texts = Globals.custom_bingo_text.duplicate()
 	box_tracker = []
 	
+	#Adds square to a board, repeat for board size
 	for y in bingo_height:
 		var hbox = HBoxContainer.new()
 		$VBoxContainer.add_child(hbox)
@@ -54,6 +56,7 @@ func fill_spaces():
 				add_button()
 				return
 			
+			# To make sure to add button if no more spaces are available
 			if not enough_spaces():
 				add_button()
 				return
@@ -80,16 +83,24 @@ func fill_spaces():
 			return
 
 func add_button():
-	var button = Button.new()
-	button.text = "Reset Board"
-	Vbox.add_child(button)
-	button.pressed.connect(self._button_pressed)
+	var reset_button = Button.new()
+	reset_button.text = "Reset Board"
+	Vbox.add_child(reset_button)
+	reset_button.pressed.connect(self._button_pressed)
+	
+	var return_button = Button.new()
+	return_button.text = "Return to menu"
+	Vbox.add_child(return_button)
+	return_button.pressed.connect(self._return_button_pressed)
+	
 	return
 
 func remove_row_from_square(groups : Array):
 	for group in groups:
 		get_tree().call_group(group, "fix_row_to_pressed")
 
+func _return_button_pressed():
+		get_tree().change_scene_to_file("res://Scenes/selection.tscn") 
 
 func _button_pressed():
 	for n in Vbox.get_children():
@@ -121,6 +132,8 @@ func check_if_diagonals():
 	if (diagonal_2_tracker.all(func(boolean): return boolean)) == true:
 		get_tree().call_group("diagonal_2", "change_state", States.Row)
 
+
+#Keeps track of whether a tile is active or inactive
 func update_space_tracker():
 	actual_space_tracker = []
 	for i in range(bingo_height):

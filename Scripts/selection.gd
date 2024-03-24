@@ -2,6 +2,7 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Globals.custom_board = false
 	pass # Replace with function body.
 
 
@@ -9,15 +10,9 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func add_to_scene_manually():
+func _on_raid_board_pressed():
 	get_tree().change_scene_to_file("res://Scenes/BingoBoard.tscn") 
 
 
-
-func _on_raid_board_pressed():
-	add_to_scene_manually()
-
-
 func _on_new_board_pressed():
-	pass
+	get_tree().change_scene_to_file("res://Scenes/NewBoard.tscn") 

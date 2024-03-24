@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdlx8ejl5losg"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial_window.gd" id="1_gm2vq"]
+[ext_resource type="Texture2D" uid="uid://cn4e5vx330avk" path="res://Textures/SimpleTutorial.png" id="2_63ud6"]
+
+[node name="TutorialWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gm2vq")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TutorialPicutre" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_63ud6")
+
+[node name="TutorialText" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Small guide:
+1. Write your prompt and press enter
+2. Every time you press enter, you create new tile on the board
+3. Currently the board supports only 5 x 5 tile sizes. This means that in total there will be 25 tiles
+4. 25 Tiles means you need to add 25 different prompts.
+5. It will warn you if there is a problem with the prompts you have written
+6. The prompts are placed randomly on the board
+
+Tips:
+The prompts are saved, If you want to reuse your prompts, exit to main menu and copy them. 
+You can always paste your saved prompts into the field."
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit turorial"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,10 +1,10 @@
 extends Node
 
-var custom_board = false
+var custom_board : bool = false
 
-var custom_bingo_text = []
+var custom_bingo_text : Array = []
 
-var bingo_text = [
+var bingo_text : Array = [
 	"Gin dies to a twister",
 	"Fleur dies to a twister",
 	"Stella dies to a twister",
