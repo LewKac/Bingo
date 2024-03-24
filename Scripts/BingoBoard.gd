@@ -3,8 +3,7 @@ extends MarginContainer
 enum States {Unpressed, Pressed, Row}
 
 
-@onready var global_text = get_node("/root/Globals") 
-@onready var texts = global_text.bingo_text.duplicate()
+var texts = []
 @onready var Vbox = get_node("VBoxContainer")
 
 @export var bingo_square : PackedScene  
@@ -33,7 +32,12 @@ func enough_spaces() -> bool:
 # Fills the spaces with blocks.
 func fill_spaces():
 	available_spaces = max_spaces
-	texts = global_text.bingo_text.duplicate()
+	diagonal_1_squares = []
+	diagonal_2_squares = []
+	if Globals.custom_board == false:
+		texts = Globals.bingo_text.duplicate()
+	else:
+		texts = Globals.custom_bingo_text.duplicate()
 	box_tracker = []
 	
 	for y in bingo_height:
@@ -91,8 +95,9 @@ func _button_pressed():
 	for n in Vbox.get_children():
 		Vbox.remove_child(n)
 		n.queue_free()
-	fill_spaces()
 	
+	fill_spaces()
+
 
 func received_signal(state : States):
 	update_space_tracker()

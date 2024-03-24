@@ -17,3 +17,7 @@ func add_to_scene_manually():
 
 func _on_raid_board_pressed():
 	add_to_scene_manually()
+
+
+func _on_new_board_pressed():
+	pass

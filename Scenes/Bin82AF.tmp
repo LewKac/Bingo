@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0g6c0skcb1y2"]
+
+[ext_resource type="Script" path="res://Scripts/BingoBoard.gd" id="1_mcfmw"]
+[ext_resource type="PackedScene" uid="uid://cr71y7cht0g0" path="res://Scenes/BingoSquare.tscn" id="2_slom0"]
+
+[node name="Board" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+script = ExtResource("1_mcfmw")
+bingo_square = ExtResource("2_slom0")
+bingo_height = null
+bingo_lenght = null
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1

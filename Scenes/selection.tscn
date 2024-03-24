@@ -48,3 +48,4 @@ layout_mode = 2
 text = "Import new board"
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer4/RaidBoard" to="." method="_on_raid_board_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/NewBoard" to="." method="_on_new_board_pressed"]

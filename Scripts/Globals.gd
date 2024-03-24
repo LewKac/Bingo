@@ -1,5 +1,9 @@
 extends Node
 
+var custom_board = false
+
+var custom_bingo_text = []
+
 var bingo_text = [
 	"Gin dies to a twister",
 	"Fleur dies to a twister",
