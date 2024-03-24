@@ -10,7 +10,10 @@ func _ready():
 #Checks if the inserted list is long enough
 func check_if_long_enough(texts : Array) -> bool:
 	if len(texts) < 25:
-		print("Too few prompts to generate a new board! Need at least 25!")
+		var error_menu = load("res://Scenes/error_window.tscn")
+		var error_window = error_menu.instantiate()
+		get_parent().add_child(error_window)
+		error_window.not_enough_tiles(len(texts))
 		return true
 	return false
 

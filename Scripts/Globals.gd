@@ -5,40 +5,36 @@ var custom_board : bool = false
 var custom_bingo_text : Array = []
 
 var bingo_text : Array = [
-	"Gin dies to a twister",
-	"Fleur dies to a twister",
-	"Stella dies to a twister",
-	"Ela dies to a twister",
-	"Pascal dies to a puddle",
-	"Hatch memes",
-	"Liquid fire memes",
-	"Thunder went wrong",
-	"Incorrect dragon bait",
-	"PrOvOkE dOeSn'T wOrK",
-	"Mitigation \n???",
-	"Towers go brrr",
-	"\"I went to a wrong spot\"",
-	"Neurolink placed in Istanbul",
-	"Ela dies during Felruin",
-	"No LB3 during transition",
-	"Boss goes spiiiin",
-	"Pushed to wall during Bahamut",
-	"Died to chatter",
-	"\"We should be in same VC\"",
-	"Gin greeds",
-	"Malzii bad",
-	"Not enough healing",
-	"Didn't skip puddles",
-	"\"I'm sleepy\"",
-	"Died to doom"
+	"Jimmy throws the cake",
+	"Tank died",
+	"Teammate didn't chug jug",
+	"Chicken dinner",
+	"Creeper killed you",
+	"Diamonds!",
+	"THE EYE OF THE TIGER",
+	"Perfect Alexander theme plays",
+	"Don't you guys have phones?",
+	"Died to enrage",
+	"Lag",
+	"Why are we still here?",
+	"This bingo is missing X feature",
+	"Geoguesser 1 v 1",
+	"Looks at the phone every 5 minutes",
+	"Not enough minerals!",
+	"Work work!",
+	"I'm such a sub! I eat at Subway every day!",
+	"Dropped in tomato town",
+	"Plays Akali bot",
+	"Never touched grass",
+	"ADC diff",
+	"Discord moderator",
+	"Gym bro",
+	"Owns a body pillow",
+	"Has anime profile picture",
+	"Eats pasta every day",
+	"Forgets to breathe",
+	"This bingo is ugly",
+	"Zerg player",
+	"Plays tetris professionally"
 ]
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass

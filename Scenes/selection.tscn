@@ -20,14 +20,14 @@ layout_mode = 2
 
 [node name="BingoText" type="Label" parent="VBoxContainer/TextContainer"]
 layout_mode = 2
-text = "Bingo card made in 5 minutes"
+text = "Bingo made in 5 minutes"
 
 [node name="CenterContainer4" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="RaidBoard" type="Button" parent="VBoxContainer/CenterContainer4"]
 layout_mode = 2
-text = "Use the preset board for raid"
+text = "Use preset board (See if you like it)"
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -35,13 +35,6 @@ layout_mode = 2
 [node name="NewBoard" type="Button" parent="VBoxContainer/CenterContainer2"]
 layout_mode = 2
 text = "Create new bingo board"
-
-[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ImportBoard" type="Button" parent="VBoxContainer/CenterContainer3"]
-layout_mode = 2
-text = "Import new board"
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer4/RaidBoard" to="." method="_on_raid_board_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/NewBoard" to="." method="_on_new_board_pressed"]
