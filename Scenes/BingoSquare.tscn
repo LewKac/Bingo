@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="2_wdryr"]
 
 [node name="BingoSquare" type="MarginContainer"]
-anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
